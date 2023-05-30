@@ -17,31 +17,31 @@
 const STATIC_CACHE_NAME = 'static-file-v-1';
 const DINAMIC_CACHES_NAME = 'dinamic-cache-name';
 const ASSET_URLS = [
-     '/',
-     '/catalog',
-    '/wishlist',
-    '/offline.html',
-    '/favicon.ico ',
-    '/catalog?is_in_stock=true&page=1',
-    '/catalog?is_new=true&page=1',
-    '/catalog?is_bestseller=true&page=1',
-    '/catalog?is_closeout=true&page=1',
-    '/cart',
-    '/profile',
-    '/orders',
-    '/notifications',
-    '/balance',
-    '/my_reviews',
-    '/about',
-    '/news',
-    '/for_partners',
-    '/information/juridical',
-    '/information/delivery',
-    '/information/exchange',
-    '/information/payment',
-    '/information/how_to',
-    '/information/reviews',
-    '/contacts',
+    //  '/',
+    //  '/catalog',
+    // '/wishlist',
+    // '/offline.html',
+    // '/favicon.ico ',
+    // '/catalog?is_in_stock=true&page=1',
+    // '/catalog?is_new=true&page=1',
+    // '/catalog?is_bestseller=true&page=1',
+    // '/catalog?is_closeout=true&page=1',
+    // '/cart',
+    // '/profile',
+    // '/orders',
+    // '/notifications',
+    // '/balance',
+    // '/my_reviews',
+    // '/about',
+    // '/news',
+    // '/for_partners',
+    // '/information/juridical',
+    // '/information/delivery',
+    // '/information/exchange',
+    // '/information/payment',
+    // '/information/how_to',
+    // '/information/reviews',
+    // '/contacts',
     // '/static/media/arrowTopNoFill.74f69abe.svg',
     // '/static/media/delivery.2ad05e5a.svg',
     // '/static/media/feedback.e4a6096f.svg',
@@ -72,15 +72,19 @@ await Promise.all(
     self.clients.claim()
 })
 
-// self.addEventListener('fetch', async (event)=>{
-//     const {request} = event;
-//     const url = new URL(request.url);
-//     if(url.origin === location.origin){
-//     //    event.respondWith(cacheFirst(request));
-//     }else{
-//     //   event.respondWith(networkFirst(request));
-//     }
-// })
+self.addEventListener('fetch', async (event)=>{
+    // console.log('--------------event =', event)
+
+    const {request} = event;
+    const url = new URL(request.url);
+    // console.log('--------------url =', url)
+    // console.log('-------origin url =', location.origin)
+    if(url.origin === location.origin){
+    //    event.respondWith(cacheFirst(request));
+    }else{
+    //   event.respondWith(networkFirst(request));
+    }
+})
 
 async function cacheFirst(request){
     try{
