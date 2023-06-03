@@ -73,10 +73,20 @@ await Promise.all(
 })
 
 self.addEventListener('fetch', async (event)=>{
-    // console.log('--------------event =', event)
-
+    
     const {request} = event;
+    // console.log('--------------event =', request)
     const url = new URL(request.url);
+    if(request.method === 'GET'){
+        // console.log('--------------url =', url.pathname.split('.').pop())
+        if( url.pathname.split('.').pop() === 'woff2' || url.pathname.split('.').pop() === 'woff' || url.pathname.split('.').pop() === 'svg' || 
+        url.pathname.split('.').pop() === 'png' || url.pathname.split('.').pop() === 'gif' || url.pathname.split('.').pop() === 'ico' || 
+        url.pathname.split('.').pop() === 'jpeg' || url.pathname.split('.').pop() === 'jpg' 
+        // || url.pathname.split('.').pop() === 'js' 
+        ){
+            event.respondWith(cacheFirst(request));
+        }
+    }
     // console.log('--------------url =', url)
     // console.log('-------origin url =', location.origin)
     if(url.origin === location.origin){
@@ -90,7 +100,7 @@ async function cacheFirst(request){
     try{
         const cached = await caches.match(request);
         // ?? - иначе
-        return cached ?? await fetch(request)
+        return cached ?? await networkFirst(request)
     }catch(err){console.log('Erroe: ',err)};
 }
 
