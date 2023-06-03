@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkftownpl=self.webpackChunkftownpl||[]).push([[263],{10263:function(e,n,s){s.r(n);var t=s(72791),c=s(80184),l=function(){return(0,c.jsx)("div",{className:"sceleton max_block"})};n.default=t.memo(l)}}]);
+//# sourceMappingURL=263.c868c3cf.chunk.js.map
